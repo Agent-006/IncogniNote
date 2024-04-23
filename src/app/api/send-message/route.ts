@@ -23,7 +23,7 @@ export async function POST(request: Request){
         }
 
         // is user accepting the messages
-        if(!user.isAcceptingMessage) {
+        if(!user.isAcceptingMessage){
             return Response.json(
                 {
                     success: false,
