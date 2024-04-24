@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
-import { useDebounceValue, useDebounceCallback } from "usehooks-ts";
+import { useDebounceCallback } from "usehooks-ts";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/schemas/signUpSchema";
@@ -124,7 +124,7 @@ export default function SignUpPage() {
                         : "text-red-500"
                     }`}
                   >
-                    test {usernameMessage}
+                    {usernameMessage}
                   </p>
                   <FormDescription>
                     This is your public display name.
@@ -142,9 +142,6 @@ export default function SignUpPage() {
                   <FormControl>
                     <Input type="email" placeholder="email" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -158,9 +155,6 @@ export default function SignUpPage() {
                   <FormControl>
                     <Input type="password" placeholder="password" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -179,7 +173,7 @@ export default function SignUpPage() {
         <div className="text-center mt-4">
           <p>
             Already a member ?{" "}
-            <Link href="/sing-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
               Sign in
             </Link>
           </p>
