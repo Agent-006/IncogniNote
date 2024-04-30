@@ -53,7 +53,7 @@ const DashboardPage = () => {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [setValue]);
+  }, [setValue, toast]);
 
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {
@@ -83,13 +83,14 @@ const DashboardPage = () => {
         setIsSwitchLoading(false);
       }
     },
-    [setIsLoading, setMessages]
+    [setIsLoading, setMessages, toast]
   );
 
   useEffect(() => {
     if (!session || !session.user) return;
 
     fetchMessages();
+
     fetchAcceptMessage();
   }, [session, setValue, fetchAcceptMessage, fetchMessages]);
 
@@ -115,6 +116,10 @@ const DashboardPage = () => {
     }
   };
 
+  if (!session || !session.user) {
+    return <div>Please login</div>;
+  }
+
   const { username } = session?.user as User;
   //TODO: do more research what are the different methods to do the same.
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
@@ -127,10 +132,6 @@ const DashboardPage = () => {
       description: "Profile URL has been copied to your clipboard",
     });
   };
-
-  if (!session || !session.user) {
-    return <div>Please login</div>;
-  }
 
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">

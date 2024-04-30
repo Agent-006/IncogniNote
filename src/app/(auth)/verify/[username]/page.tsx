@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Form,
+  Form,
   FormControl,
   FormField,
   FormItem,
@@ -42,7 +42,7 @@ export default function VerifyAccount() {
         description: response.data.message,
       });
 
-      router.replace("sign-in");
+      router.replace("/sign-in");
     } catch (error) {
       console.error("Error in signup", error);
       const axiosError = error as AxiosError<ApiResponse>;
@@ -56,8 +56,8 @@ export default function VerifyAccount() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-gray-700">
+      <div className="w-full max-w-md p-8 space-y-8 bg-gray-700 rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tighter lg:text-5xl mb-6">
             Verify your Account

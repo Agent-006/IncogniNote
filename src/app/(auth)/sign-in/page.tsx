@@ -44,8 +44,6 @@ export default function SignInPage() {
       password: data.password,
     });
 
-    console.log(result);
-
     if (result?.error) {
       // toast({
       //   title: "Login Failed",
@@ -77,11 +75,11 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-700">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tighter lg:text-5xl mb-6">
-            Join Mystery Message
+            Join IncogniNote
           </h1>
           <p className="mb-4">Sign in to start your anonymous adventure</p>
         </div>
