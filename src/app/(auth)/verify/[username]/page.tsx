@@ -56,8 +56,8 @@ export default function VerifyAccount() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-700">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="w-full max-w-md p-8 space-y-8 rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tighter lg:text-5xl mb-6">
             Verify your Account
