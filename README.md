@@ -6,7 +6,7 @@ IncogniNote is an innovative anonymous feedback messaging application designed t
 
 1. **Anonymous Messaging**: Users can send messages anonymously without revealing their identity, fostering candid conversations.
 
-2. **User Authentication**: Secure user authentication is implemented using Auth0, ensuring that only authenticated users can access the platform.
+2. **User Authentication**: Secure user authentication is implemented using Oauth, ensuring that only authenticated users can access the platform.
 
 3. **Form Handling**: React Hook Forms are utilized for efficient form handling, providing a smooth user interface for message submission.
 
@@ -37,7 +37,7 @@ IncogniNote is an innovative anonymous feedback messaging application designed t
 
 - **Authentication**:
 
-  - Auth0
+  - Oauth
 
 - **Validation**:
   - Zod
@@ -60,7 +60,7 @@ IncogniNote is an innovative anonymous feedback messaging application designed t
    npm install
    ```
 
-3. Set up environment variables for Auth0, MongoDB Atlas, and any other necessary configurations.
+3. Set up environment variables for Oauth, MongoDB Atlas, and any other necessary configurations.
 
 4. Start the development server:
 
@@ -70,7 +70,7 @@ IncogniNote is an innovative anonymous feedback messaging application designed t
 
 # Usage:
 
-1. Sign in using your Auth0 credentials or create a new account if you're a new user.
+1. Sign in using your Oauth credentials or create a new account if you're a new user.
 2. Explore the user-friendly interface to send anonymous messages or view received feedback.
 3. Enjoy open and honest communication while maintaining anonymity.
 
