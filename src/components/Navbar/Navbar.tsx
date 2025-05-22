@@ -25,7 +25,7 @@ function Navbar() {
         <nav className="fixed top-0 left-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border shadow-lg transition-colors duration-300">
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 group">
-                    <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-colors duration-300">
+                    <span className="text-2xl font-extrabold tracking-tight text-primary">
                         IncogniNote
                     </span>
                 </Link>
@@ -45,7 +45,7 @@ function Navbar() {
                                 </span>
                             </span>
                             <Button
-                                className="rounded-full px-5 py-2 font-semibold bg-gradient-to-r from-primary to-secondary text-foreground shadow-md hover:from-secondary hover:to-primary transition-all duration-200"
+                                className="rounded-full px-5 py-2 font-semibold bg-primary"
                                 onClick={() => signOut()}
                             >
                                 Logout
@@ -105,7 +105,7 @@ function Navbar() {
                     ) : (
                         <>
                             <Link href="/sign-in">
-                                <Button className="rounded-full px-5 py-2 font-bold bg-gradient-to-r from-primary to-secondary text-foreground shadow-md hover:from-secondary hover:to-primary transition-all duration-200">
+                                <Button className="rounded-full px-5 py-2 font-bold bg-primary">
                                     Login
                                 </Button>
                             </Link>
