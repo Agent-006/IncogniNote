@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -12,11 +11,10 @@ import {
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react";
+import { Loader2, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCompletion } from "ai/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { messageSchema } from "@/schemas/messageSchema";
 import { z } from "zod";
@@ -24,7 +22,6 @@ import { useParams } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { useToast } from "@/components/ui/use-toast";
-import suggestMessage from "@/data/suggestMessage.json";
 
 const specialChar = "||";
 
@@ -66,24 +63,6 @@ function PublicPage() {
     }
   };
 
-  // const {
-  //   complete,
-  //   completion,
-  //   isLoading: isSuggestLoading,
-  //   error,
-  // } = useCompletion({
-  //   api: "/api/suggest-messages",
-  //   initialCompletion: initialMessageString,
-  // });
-
-  // const fetchSuggestedMessages = () => {
-  //   try {
-  //     complete("");
-  //   } catch (error) {
-  //     console.error("Error fetching messages", error);
-  //   }
-  // };
-
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
   });
@@ -95,86 +74,99 @@ function PublicPage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
-      </h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Write your anonymous message here"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex justify-center">
-            {isLoading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
-                Send It
-              </Button>
-            )}
-          </div>
-        </form>
-      </Form>
-
-      <div className="space-y-4 my-8">
-        <div className="space-y-2">
-          {/* <Button
-            onClick={fetchSuggestedMessages}
-            className="my-4"
-            disabled={isSuggestLoading}
-          >
-            Suggest Messages
-          </Button> */}
-          <p>Click on any message below to select it.</p>
+    <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 mt-10">
+      {/* Main Card */}
+      <div className="bg-gradient-to-br from-primary/10 via-background/80 to-primary/5 border border-primary/20 shadow-2xl rounded-3xl p-6 md:p-12">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-extrabold text-primary drop-shadow-sm tracking-tight">
+            Message @{username}
+          </h1>
+          <p className="text-muted-foreground mt-2">
+            Send an anonymous message to this user
+          </p>
         </div>
-        <Card>
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
-            {
-              // error ? (
-              //   <p className="text-red-500">{error.message}</p>
-              // ) :
-              parseStringMessages(initialMessageString).map(
-                (message, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="mb-2"
-                    onClick={() => handleMessageClick(message)}
-                  >
-                    {message}
-                  </Button>
-                )
-              )
-            }
-          </CardContent>
-        </Card>
-      </div>
-      <Separator className="my-6" />
-      <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
-        <Link href={"/sign-up"}>
-          <Button>Create Your Account</Button>
-        </Link>
+
+        {/* Message Form */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lg font-semibold text-foreground">
+                    Your Message
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Write your anonymous message here..."
+                      className="resize-none min-h-[120px] bg-background/80 border-primary/20 focus:border-primary/40 transition"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex justify-center">
+              {isLoading ? (
+                <Button disabled className="min-w-[120px]">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending...
+                </Button>
+              ) : (
+                <Button 
+                  type="submit" 
+                  disabled={isLoading || !messageContent}
+                  className="min-w-[120px] bg-primary hover:bg-primary/90"
+                >
+                  Send Message
+                </Button>
+              )}
+            </div>
+          </form>
+        </Form>
+
+        {/* Suggested Messages */}
+        <div className="mt-12">
+          <div className="flex items-center gap-2 mb-4">
+            <MessageSquare className="w-5 h-5 text-primary" />
+            <h3 className="text-lg font-semibold text-foreground">
+              Suggested Messages
+            </h3>
+          </div>
+          <div className="flex flex-col gap-3">
+            {parseStringMessages(initialMessageString).map((message, index) => (
+              <Button
+                key={index}
+                variant="outline"
+                onClick={() => handleMessageClick(message)}
+                className="h-auto py-4 px-5 text-center justify-center bg-background/50 hover:bg-primary/5 hover:text-primary border border-primary/20 hover:border-primary/40 shadow-sm hover:shadow-md transition-all duration-200 w-full"
+              >
+                <MessageSquare className="w-4 h-4 mr-2 text-muted-foreground" />
+                {message}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-12 pt-8 border-t border-primary/20">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold text-foreground mb-2">
+              Want Your Own Message Board?
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Create an account and start receiving anonymous messages
+            </p>
+            <Link href="/sign-up">
+              <Button className="bg-primary hover:bg-primary/90">
+                Create Your Account
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
