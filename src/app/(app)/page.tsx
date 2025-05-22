@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Particles from "@/Backgrounds/Particles/Particles";
 import RotatingText from "@/TextAnimations/RotatingText/RotatingText";
 import InfiniteScroll from "@/components/InfiniteScroll/InfiniteScroll";
@@ -69,6 +69,24 @@ const items = [
 ];
 
 function Home() {
+    const [showScrollTop, setShowScrollTop] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowScrollTop(window.scrollY > 300);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
     return (
         <main
             className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-x-hidden border-t border-primary/10 shadow-2xl overflow-hidden
@@ -153,7 +171,7 @@ function Home() {
                     <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
                         <a
                             href="/sign-up"
-                            className="inline-block rounded-lg bg-primary text-background font-semibold px-7 py-3 shadow-lg hover:bg-primary/90 transition focus:outline-none focus:ring-2 focus:ring-primary/40"
+                            className="inline-block rounded-lg bg-primary text-foreground font-semibold px-7 py-3 shadow-lg hover:bg-primary/90 transition focus:outline-none focus:ring-2 focus:ring-primary/40"
                         >
                             Get Started Free
                         </a>
@@ -243,7 +261,12 @@ function Home() {
                                 className="hover:text-primary transition"
                                 aria-label="Twitter"
                             >
-                                <svg width="22" height="22" fill="none" viewBox="0 0 20 20">
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    fill="none"
+                                    viewBox="0 0 20 20"
+                                >
                                     <path
                                         d="M17.316 6.246c.008.112.008.225.008.338 0 3.44-2.62 7.404-7.404 7.404v-.002A7.36 7.36 0 013 13.07a5.21 5.21 0 003.85-1.08 2.6 2.6 0 01-2.43-1.808c.4.076.81.062 1.2-.045a2.6 2.6 0 01-2.08-2.55v-.033c.35.195.75.312 1.18.326a2.6 2.6 0 01-.805-3.47 7.38 7.38 0 005.36 2.72 2.6 2.6 0 014.43-2.37 5.18 5.18 0 001.65-.63 2.6 2.6 0 01-1.14 1.43 5.19 5.19 0 001.49-.41 5.56 5.56 0 01-1.3 1.35z"
                                         fill="currentColor"
@@ -257,7 +280,12 @@ function Home() {
                                 className="hover:text-primary transition"
                                 aria-label="Facebook"
                             >
-                                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
                                         d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562v1.883h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12z"
                                         fill="currentColor"
@@ -271,7 +299,12 @@ function Home() {
                                 className="hover:text-primary transition"
                                 aria-label="LinkedIn"
                             >
-                                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
                                         d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.29c-.966 0-1.75-.79-1.75-1.76 0-.97.784-1.75 1.75-1.75s1.75.78 1.75 1.75c0 .97-.784 1.76-1.75 1.76zm13.5 10.29h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.38v4.59h-3v-9h2.89v1.23h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v4.74z"
                                         fill="currentColor"
@@ -285,7 +318,12 @@ function Home() {
                                 className="hover:text-primary transition"
                                 aria-label="GitHub"
                             >
-                                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
                                         d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.577.688.479C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"
                                         fill="currentColor"
@@ -297,7 +335,12 @@ function Home() {
                                 className="hover:text-primary transition"
                                 aria-label="Email"
                             >
-                                <svg width="22" height="22" fill="none" viewBox="0 0 20 20">
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    fill="none"
+                                    viewBox="0 0 20 20"
+                                >
                                     <path
                                         d="M3.5 5A2.5 2.5 0 016 2.5h8A2.5 2.5 0 0116.5 5v10A2.5 2.5 0 0114 17.5H6A2.5 2.5 0 013.5 15V5zm1.75.5v.511l4.75 3.239 4.75-3.239V5.5a1 1 0 00-1-1H6.25a1 1 0 00-1 1zm10.25 1.489l-4.5 3.07a1 1 0 01-1.1 0l-4.5-3.07V15a1 1 0 001 1h8a1 1 0 001-1V6.989z"
                                         fill="currentColor"
@@ -322,6 +365,32 @@ function Home() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] h-24 pointer-events-none z-0">
                 <div className="w-full h-full bg-gradient-to-t from-primary/10 via-background/0 to-transparent rounded-t-3xl blur-2xl" />
             </div>
+
+            {/* Scroll to top button */}
+            <button
+                onClick={scrollToTop}
+                className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary/90 text-white shadow-lg hover:bg-primary transition-all duration-300 md:hidden ${
+                    showScrollTop
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-10 pointer-events-none"
+                }`}
+                aria-label="Scroll to top"
+            >
+                <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 10l7-7m0 0l7 7m-7-7v18"
+                    />
+                </svg>
+            </button>
         </main>
     );
 }

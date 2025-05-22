@@ -45,7 +45,7 @@ function Navbar() {
                                 </span>
                             </span>
                             <Button
-                                className="rounded-full px-5 py-2 font-semibold bg-gradient-to-r from-primary to-secondary text-background shadow-md hover:from-secondary hover:to-primary transition-all duration-200"
+                                className="rounded-full px-5 py-2 font-semibold bg-gradient-to-r from-primary to-secondary text-foreground shadow-md hover:from-secondary hover:to-primary transition-all duration-200"
                                 onClick={() => signOut()}
                             >
                                 Logout
