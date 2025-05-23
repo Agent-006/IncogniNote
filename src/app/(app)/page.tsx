@@ -73,7 +73,7 @@ function Home() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setShowScrollTop(window.scrollY > 300);
+            setShowScrollTop(window.scrollY > 150);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -120,7 +120,7 @@ function Home() {
                 />
             </div>
 
-            <section className="relative z-10 flex flex-col items-center w-full max-w-3xl px-4">
+            <section className="relative z-10 flex flex-col items-center w-full max-w-3xl px-10">
                 <div className="w-full flex flex-col items-center text-center pt-32 pb-14">
                     <span className="inline-flex items-center gap-2 mb-3 text-xs font-semibold tracking-widest text-primary uppercase bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                         <svg
@@ -171,13 +171,13 @@ function Home() {
                     <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
                         <a
                             href="/sign-up"
-                            className="inline-block rounded-lg bg-primary text-foreground font-semibold px-7 py-3 shadow-lg hover:bg-primary/90 transition focus:outline-none focus:ring-2 focus:ring-primary/40"
+                            className="inline-block bg-primary text-foreground font-semibold px-7 py-3 shadow-lg hover:bg-primary/90 transition focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-lg"
                         >
                             Get Started Free
                         </a>
                         <a
                             href="/learn-more"
-                            className="inline-block rounded-lg border border-border bg-background/80 text-foreground font-semibold px-7 py-3 hover:bg-muted/40 transition focus:outline-none focus:ring-2 focus:ring-primary/20"
+                            className="inline-block border border-border bg-background/80 text-foreground font-semibold px-7 py-3 hover:bg-muted/40 transition focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
                         >
                             Learn More
                         </a>

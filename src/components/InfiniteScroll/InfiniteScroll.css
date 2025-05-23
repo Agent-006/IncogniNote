@@ -12,7 +12,6 @@
 .infinite-scroll-wrapper::after {
     content: "";
     position: absolute;
-    background: linear-gradient(var(--dir, to bottom), black, transparent);
     height: 25%;
     width: 100%;
     z-index: 1;

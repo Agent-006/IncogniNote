@@ -60,8 +60,6 @@ export async function POST(request: Request) {
                 }
             )
         }
-
-
         
     } catch (error) {
         console.error("Error verifying user", error);

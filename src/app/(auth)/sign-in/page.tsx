@@ -45,13 +45,6 @@ export default function SignInPage() {
         });
 
         if (result?.error) {
-            // toast({
-            //   title: "Login Failed",
-            //   description: "Incorrect username or password",
-            //   variant: "destructive",
-            // });
-
-            //FIXME: This is totally optional
             if (result?.error === "CredentialsSignin") {
                 toast({
                     title: "Login Failed",
@@ -240,6 +233,16 @@ export default function SignInPage() {
                                             </FormItem>
                                         )}
                                     />
+                                    <div className="flex items-center justify-center">
+                                        Did you
+                                        <Link
+                                            href="/forget-password"
+                                            className="text-sm text-primary hover:underline mx-1 "
+                                        >
+                                            forgot
+                                        </Link>
+                                        your password?
+                                    </div>
                                     <Button
                                         type="submit"
                                         disabled={isSubmitting}
